@@ -9,8 +9,11 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            this.transform.parent = other.gameObject.transform;
-            this.GetComponent<BoxCollider>().isTrigger = false;
+            this.transform.parent = other.gameObject.transform.GetChild(0);
+            this.GetComponent<BoxCollider>().enabled = false;
+            other.gameObject.transform.localScale += Vector3.one * 0.1f;
+
+            other.gameObject.transform.GetChild(0).localScale -= Vector3.one * 0.1f;
         }
     }
 }
